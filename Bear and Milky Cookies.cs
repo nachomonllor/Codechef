@@ -1,4 +1,4 @@
-﻿https://www.codechef.com/problems/COOMILK
+https://www.codechef.com/problems/COOMILK
 
 using System;
 using System.Collections.Generic;

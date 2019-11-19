@@ -1,4 +1,5 @@
-﻿https://www.codechef.com/problems/PERMUT2
+﻿
+https://www.codechef.com/problems/PERMUT2
 
 using System;
 using System.Collections.Generic;
@@ -14,30 +15,20 @@ namespace ConsoleApplication1
 
             while (true)
             {
-
                 int n = int.Parse(Console.ReadLine());
 
                 if (n == 0) break;
 
-                int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), e => int.Parse(e));
-
-                List<int> lista = new List<int>();
+                int[] arr =  Array.ConvertAll(Console.ReadLine().Split(' '), e => int.Parse(e));
 
                 string ans = "ambiguous";
 
-                for (int i = 0; i < arr.Length; i++)
+                for (int i = 0; i +1 < arr.Length; i++)
                 {
-                    //Console.WriteLine(arr[ arr[i]-1] ); // + " " + (i + 1));
-                    lista.Add(arr[arr[i] - 1]);
-
-                    if (lista.Count > 1)
+                    if (arr[arr[i] - 1] + 1 != arr[arr[i+1] - 1])
                     {
-                        if (lista[lista.Count - 2] + 1 != lista[lista.Count - 1])
-                        {
-                            ans = "not ambiguous";
-
-                            break;
-                        }
+                        ans = "not ambiguous";
+                        break;
                     }
                 }
 
