@@ -1,4 +1,6 @@
-﻿https://www.codechef.com/problems/HOWMANY
+﻿
+https://www.codechef.com/problems/HOWMANY
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,4 +31,3 @@ namespace ConsoleApp1
         }
     }
 }
-
