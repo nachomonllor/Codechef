@@ -1,4 +1,5 @@
-﻿https://www.codechef.com/problems/BUY1GET1
+﻿
+https://www.codechef.com/problems/BUY1GET1
 
 using System;
 using System.Collections.Generic;

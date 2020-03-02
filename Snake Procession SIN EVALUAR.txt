@@ -1,0 +1,138 @@
+﻿https://www.codechef.com/problems/SNAKPROC
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static string isValid(string s)
+        {
+            s = s.Replace(".", "");
+
+            if (s.IndexOf('T') < s.IndexOf('H'))
+            {
+                return "Invalid";
+            }
+
+           
+
+           // Console.WriteLine(s);
+
+            if (s.Contains("HH") || s.Contains("TT"))
+            {
+                return "Invalid";
+            }
+
+            if (s.LastIndexOf('T') < s.LastIndexOf('H'))
+            {
+                return "Invalid";
+            }
+
+            return "Valid";
+        }
+
+
+
+
+
+        static void Main(string[] args)
+        {
+            // string s = "..H..T...HTH....T.";
+            int r = int.Parse(Console.ReadLine());
+
+            while (r-- > 0)
+            {
+                int l = int.Parse(Console.ReadLine());
+                string s = Console.ReadLine();
+
+                Console.WriteLine(isValid(s));
+
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+----------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static string isValid(string s)
+        {
+            int primerIndice = Math.Min(s.IndexOf('H'), s.IndexOf('T'));
+
+            char anterior = ' ';
+
+            if (s[primerIndice] == 'T')
+            {
+                anterior = 'T';
+                for (int i = primerIndice + 1; i < s.Length; i++)
+                {
+                    if (s[i] == 'T' && anterior == 'T')
+                    {
+                        return "Invalid";
+                    }
+                    else if (s[i] == 'H')
+                    {
+                        anterior = 'H';
+                    }
+                }
+            }
+            else if (s[primerIndice] == 'H')
+            {
+                anterior = 'H';
+                for (int i = primerIndice + 1; i < s.Length; i++)
+                {
+                    if (s[i] == 'H' && anterior == 'H')
+                    {
+                        return "Invalid";
+                    }
+                    else if(s[i] == 'T')
+                    {
+                        anterior = 'T';
+                    }
+
+                }
+
+            }
+            return "Valid";
+        }
+
+
+        
+
+
+        static void Main(string[] args)
+        {
+            // string s = "..H..T...HTH....T.";
+            int r = int.Parse(Console.ReadLine());
+
+            while (r-- > 0)
+            {
+                int l = int.Parse(Console.ReadLine());
+                string s = Console.ReadLine();
+
+                Console.WriteLine(isValid(s));
+
+            }
+
+            Console.ReadLine();
+        }
+    }
+}

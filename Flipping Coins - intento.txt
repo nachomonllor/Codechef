@@ -1,0 +1,183 @@
+﻿https://www.codechef.com/problems/FLIPCOIN
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace ConsoleApp80
+{
+
+    class Intervalo
+    {
+        public int ini;
+        public int fin;
+        public bool estado;
+
+        public Intervalo(int ini, int fin)
+        {
+            this.ini = ini;
+            this.fin = fin;
+
+        }
+
+        public Intervalo(int ini, int fin, bool estado)
+        {
+            this.ini = ini;
+            this.fin = fin;
+            this.estado = estado;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Console.WriteLine("Hello World!");
+
+            int n = 11;
+
+            List<Intervalo> querys = new List<Intervalo>();
+            querys.Add(new Intervalo(0, 2));
+            querys.Add(new Intervalo(3, 7));
+            querys.Add(new Intervalo(8, 11));
+
+
+            List<Intervalo> intervalos = new List<Intervalo>();
+            // intervalos.Add(new Intervalo(0, 10, true));
+
+            intervalos.Add(new Intervalo(0, n, true));
+            int ind_intervalo = 1;
+
+            for (int i = 0; i < querys.Count; i++)
+            {
+                //intervalos.Add(new Intervalo(querys[i].ini, querys[i].fin));
+                //intervalos.Add(new Intervalo(querys[i].ini, querys[i].fin, !intervalos[ind_intervalo - 1].estado));
+                //ind_intervalo++;
+                intervalos.Add(new Intervalo(0, querys[i].ini - 1));
+                intervalos.Add(new Intervalo(querys[i].fin + 1, n));
+                //intervalos.Add()
+                int len_intervalos = intervalos.Count;
+                for (int j = 1; j < len_intervalos; j++)
+                {
+                    intervalos.Add(new Intervalo(intervalos[j].ini-1, intervalos[j].fin + 1, !intervalos[j - 1].estado));
+                }
+
+            }
+
+            foreach (Intervalo item in intervalos)
+            {
+                Console.WriteLine(item.ini + " " + item.fin + " " + item.estado);
+            }
+
+
+            Console.ReadLine();
+
+
+        }
+
+         
+        //static void Solve(List<Intervalo> queryes)
+        //{
+
+
+        //}
+         
+
+    }
+}
+
+
+
+------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace ConsoleApp80
+{
+
+    class Intervalo
+    {
+        public int ini;
+        public int fin;
+        public bool estado;
+
+        public Intervalo(int ini, int fin)
+        {
+            this.ini = ini;
+            this.fin = fin;
+           
+        }
+
+        public Intervalo(int ini, int fin, bool estado)
+        {
+            this.ini = ini;
+            this.fin = fin;
+            this.estado = estado;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Console.WriteLine("Hello World!");
+
+            int n = 11;
+
+            List<Intervalo> querys = new List<Intervalo>();
+            querys.Add(new Intervalo(0, 2));
+            querys.Add(new Intervalo(3, 7));
+            querys.Add(new Intervalo(8, 11));
+
+
+            List<Intervalo> intervalos = new List<Intervalo>();
+            // intervalos.Add(new Intervalo(0, 10, true));
+
+            intervalos.Add(new Intervalo(0, n, true));
+            int ind_intervalo = 1;
+
+            for (int i = 0; i < querys.Count; i++)
+            {
+                //intervalos.Add(new Intervalo(querys[i].ini, querys[i].fin));
+                //intervalos.Add(new Intervalo(querys[i].ini, querys[i].fin, !intervalos[ind_intervalo - 1].estado));
+                //ind_intervalo++;
+                intervalos.Add(new Intervalo(0, querys[i].ini - 1));
+                intervalos.Add(new Intervalo(querys[i].fin + 1, n));
+                //intervalos.Add()
+
+                for (int j = 1; j < intervalos.Count; j++)
+                {
+                    intervalos.Add(new Intervalo(querys[i].ini, querys[i].fin, !intervalos[j].estado));
+                }
+
+            }
+
+            foreach (Intervalo item in intervalos)
+            {
+                Console.WriteLine(item.ini + " " + item.fin + " " + item.estado);
+            }
+
+
+            Console.ReadLine();
+
+
+        }
+
+        /*
+        static void Solve(List<Intervalo> queryes)
+        {
+
+
+        }
+        */
+
+    }
+}
