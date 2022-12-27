@@ -1,0 +1,101 @@
+
+https://www.codechef.com/problems/MODEFREQ
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ConsoleApp69
+{
+    class Program
+    {
+
+        static int ModeOfFrequencies(int[] arr)
+        {
+            Dictionary<int, int> frec = new Dictionary<int, int>();
+
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (frec.ContainsKey(arr[i]))
+                {
+                    frec[arr[i]]++;
+                }
+                else
+                {
+                    frec[arr[i]]=1;
+                }
+            }
+
+            Dictionary<int, HashSet<int>> frecKey = new Dictionary<int, HashSet<int>>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (frecKey.ContainsKey(frec[arr[i]]))
+                {
+                    frecKey[frec[arr[i]]].Add(arr[i]);
+                }
+                else
+                {
+                    frecKey[frec[arr[i]]]=new HashSet<int>();
+                    frecKey[frec[arr[i]]].Add(arr[i]);
+                }
+
+            }
+
+            //int maxNums = 0;
+            //int minKeyMaxNums = 0;
+
+            int maxCant = 0;
+            int minFrec = int.MaxValue;
+
+            foreach (KeyValuePair<int, HashSet<int>> kvp in frecKey)
+            {
+                HashSet<int> list = kvp.Value;
+
+                if (kvp.Value.Count > maxCant)
+                {
+                    maxCant = kvp.Value.Count;
+                    minFrec = kvp.Key;
+                }
+                else if(kvp.Value.Count == maxCant)
+                {
+                    if(kvp.Key < minFrec)
+                    {
+                        minFrec = kvp.Key;
+                    }
+                }
+
+            }
+
+            return minFrec;
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            int T = int.Parse(Console.ReadLine().Trim());
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < T; i++)
+            {
+                int N = int.Parse(Console.ReadLine().Trim());
+                int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+                sb.AppendLine(ModeOfFrequencies(arr).ToString());
+            }
+
+            Console.Write(sb.ToString());
+
+            // int[] test1 = { 5, 9, 2, 9, 7, 2, 5, 3 }; //2
+            // int[] test2 = { 5, 9, 2, 9, 7, 2, 5, 3, 1}; //1
+
+            //// int[] arr = { 5, 9, 2, 9, 7, 2, 5, 3, 1, 70, 70, 70, 70, 70, 70 };
+            // Console.WriteLine( ModeOfFrequencies(test1));
+            // Console.WriteLine(ModeOfFrequencies(test2));
+
+            Console.ReadLine();
+        }
+    }
+}
