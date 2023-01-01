@@ -1,0 +1,59 @@
+https://www.codechef.com/problems/DNASTORAGE
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp75
+{
+    class Program
+    {
+
+        static string Encoding(string bin)
+        {
+
+            //00 is replaced with A
+            //01 is replaced with T
+            //10 is replaced with C
+            //11 is replaced with G
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+
+            dict["00"] = "A";
+            dict["01"] = "T";
+            dict["10"] = "C";
+            dict["11"] = "G";
+
+            StringBuilder sb = new StringBuilder();
+
+            for(int i = 0; i + 2 <= bin.Length; i+=2)
+            {
+                string subs = bin.Substring(i, 2);
+                sb.Append(dict[subs]);
+            }
+
+            return sb.ToString();
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            for (int i = 0; i < t; i++)
+            {
+                int n = int.Parse(Console.ReadLine().Trim());
+                string bin = Console.ReadLine().Trim();
+                Console.WriteLine(Encoding(bin));
+            }
+
+            //string bin = "101010";
+            //Console.WriteLine( Encoding(bin));
+
+            Console.ReadLine();
+        }
+    }
+}
